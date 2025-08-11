@@ -1,3 +1,5 @@
+// Root Layout: Estructura base de la aplicación Next.js
+// Aplica fuentes globales, estilos y envuelve toda la app
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -22,12 +24,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Render del layout raíz
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="antialiased inset-0 absolute flex flex-col w-full h-full">{children}</div>
       </body>
     </html>
   );

@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <h1>🛒 Marketplace Prueba</h1>
+  <p><strong>Aplicación desarrollada como <u>prueba técnica</u>.</strong></p>
+  <p>Proyecto de marketplace construido con Next.js, DaisyUI, Prisma y Atomic Design.</p>
+</div>
 
-## Getting Started
+---
 
-First, run the development server:
+## 🚀 Descripción
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Marketplace Prueba es una aplicación web moderna para la gestión de tiendas y productos, implementando Atomic Design y un estilo visual uniforme con DaisyUI. Permite a los usuarios crear tiendas, agregar productos, gestionar órdenes y explorar el catálogo de manera intuitiva.
+
+---
+
+## 🛠️ Tecnologías principales
+
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **Prisma ORM** (PostgreSQL)
+- **DaisyUI** (sobre TailwindCSS)
+- **Atomic Design** (atoms, molecules, organisms, templates)
+- **NextAuth.js** (autenticación)
+- **React Icons**
+
+---
+
+## 📁 Estructura del proyecto
+
+```
+src/
+  app/
+    (store)/         # Páginas principales del marketplace
+    api/             # Rutas API (productos, tiendas, auth, seed)
+  components/
+    atoms/           # Elementos básicos reutilizables
+    molecules/       # Combinaciones simples de átomos
+    organisms/       # Componentes complejos y secciones
+    templates/       # Layouts y plantillas de página
+  lib/               # Utilidades, configuración de Prisma y auth
+  store/             # Estado global (ej: carrito)
+  types/             # Tipos TypeScript globales
+public/              # Recursos estáticos
+prisma/              # Esquema y migraciones de base de datos
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚡ Instalación y uso rápido
 
-## Learn More
+1. **Clona el repositorio:**
+   ```bash
+   git clone <repo-url>
+   cd marketplace-prueba
+   ```
+2. **Configura el entorno:**
+   - Renombra `.env.example` a `.env` y ajusta las variables si es necesario.
+3. **Levanta todo con Docker Compose:**
+   ```bash
+   docker compose up --build
+   ```
+4. **Accede a** `http://localhost:3000`
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Notas importantes:**
+- La base de datos utilizada es **PostgreSQL** (se crea automáticamente con Docker Compose).
+- Los datos de prueba (usuarios, tiendas, productos) se generan usando **Faker.js** en el seed.
+- El proceso de seed valida que las imágenes sean accesibles, por lo que poblar la base de datos puede tardar **hasta 5 minutos** en la primera ejecución. Ten paciencia mientras se crean tiendas y productos.
+- El seed solo se ejecuta si la base de datos está vacía; si ya hay datos, no se vuelve a poblar automáticamente.
 
-## Deploy on Vercel
+¡Eso es todo! No necesitas instalar nada más en tu máquina, solo tener Docker y Docker Compose instalados.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 👤 Usuarios de prueba (seed)
+
+### Usuarios BUSINESS (admin de tienda)
+
+Puedes iniciar sesión como administrador de tienda con los siguientes usuarios:
+
+| Email               | Contraseña |
+|---------------------|:----------:|
+| business1@gmail.com | abcd1234   |
+| business2@gmail.com | abcd1234   |
+| business3@gmail.com | abcd1234   |
+| business4@gmail.com | abcd1234   |
+| business5@gmail.com | abcd1234   |
+
+### Usuarios CLIENT (cliente comprador)
+
+Para probar como cliente, simplemente haz login con Google o GitHub desde la pantalla de acceso. No existe registro manual: la primera autenticación crea automáticamente tu usuario CLIENT. No hay usuarios CLIENT pre-cargados.
+
+
+
+
+## ✅ Lista de chequeo de la prueba técnica
+
+A continuación se detalla el cumplimiento de los objetivos y requisitos solicitados en la prueba técnica:
+
+- [x] **Autenticación:** Sistema de autenticación implementado con NextAuth.js, un solo punto de entrada/login, manejo de dos tipos de usuario (Business y Cliente) y acceso diferenciado según rol.
+- [x] **Business:** Puede registrarse/iniciar sesión, crear una o varias tiendas, crear productos asociados a cada tienda y ver un panel con los pedidos realizados a sus tiendas (solo los suyos).
+- [x] **Cliente:** Puede navegar sin login (ver tiendas y productos), registrarse/iniciar sesión, comprar productos, y los pedidos quedan asociados correctamente a cliente, producto, tienda y negocio.
+- [x] **Funcionalidades esperadas:** Listado de tiendas, productos por tienda, registro/login, compra de productos (solo logueado), creación de tiendas y productos, y panel de pedidos para negocios.
+- [x] **Estructura y relaciones:** Código modular, uso correcto de relaciones en Prisma, manejo de permisos y rutas públicas/privadas.
+- [x] **Frontend:** Formularios y navegación clara, separación de roles, calidad visual y usabilidad.
+- [x] **Documentación:** README claro con instrucciones para correr localmente, configuración de .env y usuarios de prueba.
+
+
+## 🧩 Atomic Design
+
+El proyecto sigue la metodología Atomic Design:
+- **Atoms:** Elementos básicos (botones, etiquetas)
+
+---
+- Gestión de órdenes
